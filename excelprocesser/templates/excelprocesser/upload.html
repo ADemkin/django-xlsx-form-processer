@@ -1,0 +1,24 @@
+{% extends 'excelprocesser/bootstrap.html' %}
+
+{% block title %}Upload Excel File{% endblock %}
+{% block uploadactive %}active{% endblock %}
+
+{% block content %}
+<div class="container">
+	<div class="header clearfix">
+		<h3 class="display-1">Upload excel file here:</h3>
+	</div>
+	
+	<div class="jumbotron">
+		<form method="POST" enctype="multipart/form-data">{% csrf_token %}
+			<div class="form-group">
+				{{ form.file }}
+			</div>
+			<div class="mt-5 ml-5">
+				<input class="btn btn-lg btn-primary" role="button" type="submit" value="Submit"/>
+			</div>
+		</form>
+	</div>
+</div>
+
+{% endblock %}

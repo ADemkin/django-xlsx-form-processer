@@ -1,0 +1,83 @@
+{% extends 'excelprocesser/bootstrap.html' %}
+
+{% block title %}Edit Ad data{% endblock %}
+{% block editoractive %}active{% endblock %}
+{% block content %}
+<div class="container">
+	<div class="header clearfix">
+		<h3 class="display-1">Edit fields data here:</h3>
+	</div>
+	
+	<div class="jumbotron">
+		<form method="POST"
+			  action="{% url 'editor' %}"
+			  enctype="multipart/form-data">
+			{% csrf_token %}
+			<!-- loop from here-->
+			{% if error %}
+			<h1>{{ error }}</h1>
+			{% else %}
+			
+			{% for item in items %}
+			<div class="form-row mb-4">
+				<!--<input type="hidden"-->
+				<!--name="form_data"-->
+				<!--value="true">-->
+				<input type="hidden"
+					   name="form_data"
+					   value="{{ item.row }}">
+				<label class="col-form-label">{{ forloop.counter }}.</label>
+				<div class="col-4">
+					<textarea
+							name="form_data"
+							class="form-control"
+							rows="1">{{item.title.value}}</textarea>
+					<input type="hidden"
+						   name="form_data"
+						   value="{{ item.title.column }}">
+				</div>
+				<div class="col">
+					<textarea
+							name="form_data"
+							class="form-control"
+							rows="1">{{item.text.value}}</textarea>
+					<input type="hidden"
+						   name="form_data"
+						   value="{{ item.text.column }}">
+				</div>
+			</div>
+			{% endfor %}
+			
+			<div class="row mt-5 ml-5">
+				<input class="btn btn-lg btn-primary"
+					   role="button"
+					   type="submit"
+					   name="update"
+				
+					   value="Save fields"/>
+				{% if message %}
+				<p class="lead ml-5">{{ message }}</p>
+				{% endif %}
+				<!--<input class="btn btn-lg btn-primary ml-5" role="button" type="download" value="Download updated xlsx"/>-->
+			</div>
+			<div class="row mt-5 ml-5">
+				<input class="btn btn-lg btn-secondary"
+									   role="button"
+									   type="submit"
+									   name="download"
+								
+									   value="Download updated file"/>
+			</div>
+			{% endif %}
+		</form>
+		<!--<form action="/upload" method="POST" enctype="multipart/form-data">-->
+		<!--<h2>Select a file:</h2>-->
+		<!--<input class="lead" type="file" name="upload" multiple />-->
+		<!--<input class="btn btn-lg btn-success" role="button" type="submit" value="Start upload" />-->
+		<!--</form>-->
+	
+	</div>
+
+</div> <!-- /container -->
+
+{% endblock %}
