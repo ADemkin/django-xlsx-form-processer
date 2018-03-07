@@ -1,7 +1,7 @@
 Django Excel Processer
 =
 
-This is a test task. It is not working correctly and need to be finished.
+This is a test assignment.
 
 # How to install
 
@@ -39,8 +39,11 @@ python3 manage.py runserver
 ```
 Go to your browser and visit [local server](http://127.0.0.1:8000/)
 
-## Warning!
-This project is not finished and does not working properly.
+# Usage:
+1. load properly formatted xls file
+2. edit fields in edit form
+3. press "Save Fields' button to save changes
+4. press "Download Updated File" to download updated xls file
 
 &copy; Anton Demkin, 2018
 
