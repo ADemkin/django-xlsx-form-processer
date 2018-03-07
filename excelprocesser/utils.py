@@ -35,21 +35,24 @@ def load_data_from_xlsx_file(file):
     return all_data
 
 
-def save_data_to_xlsx(all_data, file):
+def save_data_to_xlsx(xls_data, file):
     workbook = load_workbook(file)
     sheet_name = workbook.sheetnames[0]
     sheet = workbook[sheet_name]
     
-    for data in all_data:
-        sheet.cell(row=data["row"],
-                   column=column_index_from_string(data["title"]["column"]),
-                   value=data["title"]["value"]
-                   )
-        sheet.cell(row=data["row"],
-                   column=column_index_from_string(data["text"]["column"]),
-                   value=data["text"]["value"])
+    for line in xls_data:
+        
+        sheet.cell(row=line['row'],
+                   column=column_index_from_string(line['title']['column'])
+                   ).value = line['title']['value']
+        
+        sheet.cell(row=line['row'],
+                   column=column_index_from_string(line['text']['column'])
+                   ).value = line['text']['value']
     
-    return save_virtual_workbook(workbook)
+    result = save_virtual_workbook(workbook)
+    
+    return result
 
 
 def get_form_data_from_request(request):
@@ -63,7 +66,7 @@ def get_form_data_from_request(request):
     
     for i in range(0, len(form_data[0]), NUMBER_OF_FORM_FIELDS):
         current_row_data = {}
-        current_row_data["row"] = form_data[0][i]
+        current_row_data["row"] = int(form_data[0][i])
         
         current_row_data["title"] = {
             "value" :form_data[0][i + 1],
