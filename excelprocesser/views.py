@@ -20,12 +20,11 @@ def upload(request):
         if form.is_valid():
             file = request.FILES['file']
             name, extension = os.path.splitext(file.name)
-            size = file.size
             
             fs = FileSystemStorage()
             filepath = fs.save(file.name, file)
             
-            if extension in ['.xlsx', '.xls'] and size > 0:
+            if extension in ['.xlsx', '.xls'] and file.size > 0:
                 request.session['filepath'] = filepath
                 request.session['filename'] = file.name
                 return editor(request)
@@ -45,7 +44,7 @@ def editor(request):
     if request.method == 'POST' and "update" in request.POST:
         xls_data = get_form_data_from_request(request)
         context['items'] = xls_data
-        context['message'] = "Fields updated."
+        context['message'] = "Поля обновлены."
     
     elif request.method == 'POST' and 'download' in request.POST:
         xls_data = get_form_data_from_request(request)

@@ -50,9 +50,7 @@ def save_data_to_xlsx(xls_data, file):
                    column=column_index_from_string(line['text']['column'])
                    ).value = line['text']['value']
     
-    result = save_virtual_workbook(workbook)
-    
-    return result
+    return save_virtual_workbook(workbook)
 
 
 def get_form_data_from_request(request):

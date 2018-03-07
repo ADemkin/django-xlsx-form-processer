@@ -5,7 +5,7 @@
 {% block content %}
 <div class="container">
 	<div class="header clearfix">
-		<h3 class="display-1">Edit fields data here:</h3>
+		<h3 class="display-4">Редактирование:</h3>
 	</div>
 	
 	<div class="jumbotron">
@@ -17,6 +17,10 @@
 			{% if error %}
 			<h1>{{ error }}</h1>
 			{% else %}
+			{% if message %}
+			<div class="message"><p class="lead ml-5">{{ message }}</p></div>
+			
+			{% endif %}
 			
 			{% for item in items %}
 			<div class="form-row mb-4">
@@ -53,20 +57,16 @@
 					   role="button"
 					   type="submit"
 					   name="update"
+					   value="Сохранить данные"/>
 				
-					   value="Save fields"/>
-				{% if message %}
-				<p class="lead ml-5">{{ message }}</p>
-				{% endif %}
 				<!--<input class="btn btn-lg btn-primary ml-5" role="button" type="download" value="Download updated xlsx"/>-->
 			</div>
 			<div class="row mt-5 ml-5">
 				<input class="btn btn-lg btn-secondary"
-									   role="button"
-									   type="submit"
-									   name="download"
-								
-									   value="Download updated file"/>
+					   role="button"
+					   type="submit"
+					   name="download"
+					   value="Загрузить обновленный эксель"/>
 			</div>
 			{% endif %}
 		</form>
@@ -79,5 +79,6 @@
 	</div>
 
 </div> <!-- /container -->
+
 
 {% endblock %}

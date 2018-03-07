@@ -9,7 +9,7 @@
 <body>
 <!-- navbar -->
 <nav class="navbar navbar-expand-md navbar-primary bg-primary navbar-dark mb-4">
-	<a class="navbar-brand" href="{% url 'index' %}">EM Сервис</a>
+	<a class="navbar-brand" href="{% url 'index' %}">Редактор xls полей</a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
 			aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
@@ -17,7 +17,7 @@
 	<div class="collapse navbar-collapse" id="navbarCollapse">
 		<ul class="navbar-nav mr-auto">
 			<li class="nav-item {% block uploadactive %}{% endblock %}">
-							<a class="nav-link" href="{% url 'upload' %}">Upload</a>
+							<a class="nav-link" href="{% url 'upload' %}">Загрузить</a>
 						</li>
 			<!--<li class="nav-item {% block editoractive %}{% endblock %}">-->
 				<!--<a class="nav-link" href="{% url 'editor' %}">Editor</a>-->
@@ -54,5 +54,10 @@
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script>
+	setTimeout(function () {
+	    $("div.message").hide();
+	}, 3000);
+</script>
 </body>
 </html>
